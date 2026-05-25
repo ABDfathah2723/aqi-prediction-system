@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import requests
 import numpy as np
 import joblib
 import sqlite3
@@ -38,6 +39,34 @@ def history():
         rows=rows
     )
 
+# ADD LIVE AQI ROUTE
+@app.route('/live/<city>')
+def live(city):
+
+    api_key = "YOUR_API_KEY"
+
+    cities = {
+        "delhi": (28.7041, 77.1025),
+        "bangalore": (12.9716, 77.5946),
+        "chennai": (13.0827, 80.2707),
+        "mumbai": (19.0760, 72.8777)
+    }
+
+    lat, lon = cities[city]
+
+    url = f"http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid={api_key}"
+
+    response = requests.get(url)
+
+    data = response.json()
+
+    pollution = data['list'][0]['components']
+
+    return render_template(
+        'live.html',
+        city=city,
+        pollution=pollution
+    )
 
 # PERFORMANCE ANALYSIS PAGE
 @app.route('/performance')
