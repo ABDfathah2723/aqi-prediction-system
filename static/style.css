@@ -48,7 +48,7 @@ body{
 
 .hero-section{
     width:100%;
-    min-height:100vh;
+    min-height:75vh;
     background:
     linear-gradient(rgba(0,0,0,0.6),
     rgba(0,0,0,0.7)),
@@ -77,7 +77,7 @@ body{
 }
 
 .hero-text h1{
-    font-size:6rem;
+    font-size:4.5rem;
     font-weight:800;
     line-height:1.1;
     margin-bottom:25px;
@@ -98,7 +98,7 @@ body{
 /* AQI CARD */
 
 .aqi-card{
-    width:420px;
+    width:380px;
     background:rgba(255,255,255,0.08);
     backdrop-filter:blur(20px);
     border:1px solid rgba(255,255,255,0.1);
@@ -343,4 +343,55 @@ body{
     .stats-container{
         padding:40px 20px;
     }
+}
+/* INPUT PLACEHOLDER FIX */
+
+input::placeholder{
+    color:#cbd5e1 !important;
+    opacity:1;
+}
+
+input{
+    color:white !important;
+}
+
+/* HERO SMALL FIX */
+
+.hero-section{
+    padding:50px 70px;
+}
+
+/* PREDICT SECTION */
+
+.prediction-section{
+    padding-top:50px;
+}
+
+/* INPUT BOX STYLE */
+
+.input-grid input{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+/* BETTER TEXT */
+
+.prediction-section h1{
+    font-size:4rem;
+    margin-bottom:15px;
+}
+
+.prediction-section p{
+    font-size:1.2rem;
+    color:#d1d5db;
+} 
+
+.glass-container{
+    background:rgba(255,255,255,0.04);
+    padding:50px;
+    border-radius:30px;
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.08);
+    box-shadow:0 0 30px rgba(0,0,0,0.3);
 }

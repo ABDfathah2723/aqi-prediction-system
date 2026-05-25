@@ -112,117 +112,120 @@
 <!-- PREDICTION SECTION -->
 
 <div class="prediction-section">
+    <div class="glass-container">
 
-    <h1>🌍 Predict AQI</h1>
+        <h1>🌍 Predict AQI</h1>
 
-    <p>
-        Enter pollution values to predict AQI level
-    </p>
+        <p>
+            Enter pollution values to predict AQI level
+        </p>
 
-    <form action="/predict" method="POST">
+        <form action="/predict" method="POST">
 
-        <div class="input-grid">
+            <div class="input-grid">
 
-            <input
-                class="form-control"
-                type="text"
-                name="PM25"
-                placeholder="PM2.5"
-                required
-            >
+                <input
+                    class="form-control"
+                    type="text"
+                    name="PM25"
+                    placeholder="PM2.5"
+                    required
+                >
 
-            <input
-                class="form-control"
-                type="text"
-                name="PM10"
-                placeholder="PM10"
-                required
-            >
+                <input
+                    class="form-control"
+                    type="text"
+                    name="PM10"
+                    placeholder="PM10"
+                    required
+                >
 
-            <input
-                class="form-control"
-                type="text"
-                name="NO"
-                placeholder="NO"
-                required
-            >
+                <input
+                    class="form-control"
+                    type="text"
+                    name="NO"
+                    placeholder="NO"
+                    required
+                >
 
-            <input
-                class="form-control"
-                type="text"
-                name="NO2"
-                placeholder="NO2"
-                required
-            >
+                <input
+                    class="form-control"
+                    type="text"
+                    name="NO2"
+                    placeholder="NO2"
+                    required
+                >
 
-            <input
-                class="form-control"
-                type="text"
-                name="NOx"
-                placeholder="NOx"
-                required
-            >
+                <input
+                    class="form-control"
+                    type="text"
+                    name="NOx"
+                    placeholder="NOx"
+                    required
+                >
 
-            <input
-                class="form-control"
-                type="text"
-                name="NH3"
-                placeholder="NH3"
-                required
-            >
+                <input
+                    class="form-control"
+                    type="text"
+                    name="NH3"
+                    placeholder="NH3"
+                    required
+                >
 
-            <input
-                class="form-control"
-                type="text"
-                name="CO"
-                placeholder="CO"
-                required
-            >
+                <input
+                    class="form-control"
+                    type="text"
+                    name="CO"
+                    placeholder="CO"
+                    required
+                >
 
-            <input
-                class="form-control"
-                type="text"
-                name="SO2"
-                placeholder="SO2"
-                required
-            >
+                <input
+                    class="form-control"
+                    type="text"
+                    name="SO2"
+                    placeholder="SO2"
+                    required
+                >
 
-            <input
-                class="form-control"
-                type="text"
-                name="O3"
-                placeholder="O3"
-                required
-            >
+                <input
+                    class="form-control"
+                    type="text"
+                    name="O3"
+                    placeholder="O3"
+                    required
+                >
+
+            </div>
+
+            <button class="predict-btn">
+
+                🚀 Predict AQI
+
+            </button>
+
+        </form>
+
+        <!-- RESULT -->
+
+        {% if prediction_text %}
+
+        <div
+            class="result-card"
+            style="background: {{ color }};">
+
+            <h2>🌍 AQI STATUS</h2>
+
+            <h1>{{ prediction_text }}</h1>
+
+            <h4>{{ advice }}</h4>
 
         </div>
 
-        <button class="predict-btn">
-
-            🚀 Predict AQI
-
-        </button>
-
-    </form>
-
-    <!-- RESULT -->
-
-    {% if prediction_text %}
-
-    <div
-        class="result-card"
-        style="background: {{ color }};">
-
-        <h2>🌍 AQI STATUS</h2>
-
-        <h1>{{ prediction_text }}</h1>
-
-        <h4>{{ advice }}</h4>
-
-    </div>
-
-    {% endif %}
+        {% endif %}
+    </div>    
 
 </div>
+
 
 {% endblock %}
