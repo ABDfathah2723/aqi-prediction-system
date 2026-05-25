@@ -43,7 +43,7 @@ def history():
 @app.route('/live/<city>')
 def live(city):
 
-    api_key = "YOUR_API_KEY"
+    api_key = "9529e6bfcb617d03055e4d73a9ce3132"
 
     cities = {
         "delhi": (28.7041, 77.1025),
