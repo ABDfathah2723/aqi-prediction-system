@@ -43,23 +43,63 @@ def history():
         'history.html',
         rows=rows
     )
+@app.route('/aqi', methods=['POST'])
 
-
-@app.route('/weather', methods=['POST'])
-
-def weather():
+def aqi():
 
     city = request.form['city']
 
-    weather_url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}"
+    # STEP 1 → GET CITY COORDINATES
 
-    response = requests.get(weather_url)
+    geo_url = f"http://api.openweathermap.org/geo/1.0/direct?q={city}&limit=1&appid={API_KEY}"
 
-    data = response.json()
+    geo_response = requests.get(geo_url)
 
-    temp = round(data["main"]["temp"] - 273.15, 2)
+    geo_data = geo_response.json()
 
-    humidity = data["main"]["humidity"]
+    lat = geo_data[0]['lat']
+
+    lon = geo_data[0]['lon']
+
+    # STEP 2 → GET AQI DATA
+
+    aqi_url = f"http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid={API_KEY}"
+
+    aqi_response = requests.get(aqi_url)
+
+    aqi_data = aqi_response.json()
+
+    # AQI VALUE
+
+    aqi_index = aqi_data['list'][0]['main']['aqi']
+
+    # POLLUTION COMPONENTS
+
+    pm25 = aqi_data['list'][0]['components']['pm2_5']
+
+    pm10 = aqi_data['list'][0]['components']['pm10']
+
+    # AQI CATEGORY
+
+    if aqi_index == 1:
+
+        category = "Good 😊"
+
+    elif aqi_index == 2:
+
+        category = "Fair 🙂"
+
+    elif aqi_index == 3:
+
+        category = "Moderate 😐"
+
+    elif aqi_index == 4:
+
+        category = "Poor 😷"
+
+    else:
+
+        category = "Very Poor ☠"
 
     return render_template(
 
@@ -67,9 +107,13 @@ def weather():
 
         city=city,
 
-        temp=temp,
+        aqi=aqi_index,
 
-        humidity=humidity
+        pm25=pm25,
+
+        pm10=pm10,
+
+        category=category
     )
 
 # ADD LIVE AQI ROUTE

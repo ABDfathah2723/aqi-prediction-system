@@ -23,22 +23,22 @@
 
         <div class="aqi-card">
 
-            <h2>🌍 Live Weather</h2>
+            <h2>🌍 Live AQI</h2>
 
-            <form method="POST" action="/weather">
+            <form method="POST" action="/aqi">
 
-                <input type="text"
-                name="city"
-                placeholder="Enter City"
-                required
-                class="form-control mb-3">
+            <input type="text"
+            name="city"
+            placeholder="Enter City"
+            required
+            class="form-control mb-3">
 
-                <button type="submit"
-                class="btn btn-primary">
+            <button type="submit"
+            class="btn btn-primary">
 
-                Search
+            Search AQI
 
-                </button>
+            </button>
 
             </form>
 
@@ -48,9 +48,13 @@
 
             <h3>{{ city }}</h3>
 
-            <h1>{{ temp }}°C</h1>
+            <h1>AQI: {{ aqi }}</h1>
 
-            <h4>Humidity: {{ humidity }}%</h4>
+            <h4>PM2.5: {{ pm25 }}</h4>
+
+            <h4>PM10: {{ pm10 }}</h4>
+
+            <h4>{{ category }}</h4>
 
             {% endif %}
 
