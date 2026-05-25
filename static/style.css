@@ -1,0 +1,197 @@
+body{
+    margin:0;
+    padding:0;
+    font-family:Arial;
+    background:#f4f7fb;
+}
+
+/* NAVBAR */
+
+.navbar{
+    background:#0f2027 !important;
+    padding:15px 40px;
+}
+
+.navbar-brand{
+    color:white !important;
+    font-size:30px;
+    font-weight:bold;
+}
+
+.nav-link{
+    color:white !important;
+    margin-left:20px;
+    font-size:18px;
+}
+
+/* MAIN CONTENT */
+
+.main-content{
+    min-height:80vh;
+    padding:30px;
+}
+
+/* CARD */
+
+.custom-card{
+    background:white;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* FOOTER */
+
+.footer{
+    background:#0f2027;
+    color:white;
+    padding:40px;
+}
+
+.footer a{
+    color:white;
+    text-decoration:none;
+}
+
+.footer ul{
+    list-style:none;
+    padding:0;
+}
+
+.footer li{
+    margin-bottom:10px;
+}
+
+/* DASHBOARD IMAGES */
+
+.graph-img{
+    width:100%;
+    border-radius:10px;
+}
+
+.hero-section{
+
+    background:url('https://images.unsplash.com/photo-1534088568595-a066f410bcda?q=80&w=1200');
+
+    background-size:cover;
+
+    background-position:center;
+
+    height:350px;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-bottom:30px;
+}
+
+.hero-overlay{
+
+    background:rgba(0,0,0,0.6);
+
+    height:100%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:50px;
+
+    color:white;
+}
+
+.hero-text h1{
+
+    font-size:50px;
+
+    margin-bottom:20px;
+}
+
+.hero-text p{
+
+    font-size:22px;
+}
+
+.aqi-card{
+
+    background:white;
+
+    color:black;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    width:200px;
+}
+
+.aqi-card h1{
+
+    font-size:60px;
+
+    color:green;
+}
+.nav-link.active{
+
+    color:#00c6ff !important;
+
+    font-weight:bold;
+
+    border-bottom:2px solid #00c6ff;
+}
+.result-card{
+
+    margin-top:30px;
+
+    background:linear-gradient(135deg,#00c6ff,#0072ff);
+
+    color:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+.stats-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+
+    transition:0.3s;
+}
+
+.stats-card:hover{
+
+    transform:translateY(-5px);
+}
+
+.stats-card h1{
+
+    font-size:45px;
+
+    color:#0072ff;
+
+    font-weight:bold;
+}
+
+.stats-card p{
+
+    font-size:18px;
+
+    margin-top:10px;
+}

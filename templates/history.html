@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}History{% endblock %}
+
+{% block content %}
+
+<div class="custom-card">
+
+    <h1>📜 Prediction History</h1>
+
+    <table class="table table-striped mt-4">
+
+        <tr>
+            <th>ID</th>
+            <th>PM2.5</th>
+            <th>PM10</th>
+            <th>Prediction</th>
+        </tr>
+
+        {% for row in rows %}
+
+        <tr>
+
+            <td>{{ row[0] }}</td>
+
+            <td>{{ row[1] }}</td>
+
+            <td>{{ row[2] }}</td>
+
+            <td>{{ row[10] }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+{% endblock %}

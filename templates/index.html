@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<div class="card p-5 text-center">
+
+    <div class="hero-section">
+
+        <div class="hero-overlay">
+
+        <div class="hero-text">
+
+            <h1>🌍 Air Quality Detection</h1>
+
+            <p>
+                Predict Air Quality Index using
+                Machine Learning Algorithms
+            </p>
+
+        </div>
+
+        <div class="aqi-card">
+
+            <h2>AQI</h2>
+
+            <h1>72</h1>
+
+            <p>Moderate 😐</p>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="row mb-4">
+
+    <div class="col-md-3">
+
+        <div class="stats-card">
+
+            <h1>95%</h1>
+
+            <p>Model Accuracy</p>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="stats-card">
+
+            <h1>29K+</h1>
+
+            <p>Dataset Records</p>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="stats-card">
+
+            <h1>3</h1>
+
+            <p>ML Algorithms</p>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="stats-card">
+
+            <h1>5</h1>
+
+            <p>AQI Categories</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <form action="/predict" method="POST">
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <input class="form-control"
+                type="text"
+                name="PM25"
+                placeholder="PM2.5"
+                required>
+            </div>
+
+            <div class="col-md-4">
+                <input class="form-control"
+                type="text"
+                name="PM10"
+                placeholder="PM10"
+                required>
+            </div>
+
+            <div class="col-md-4">
+                <input class="form-control"
+                type="text"
+                name="NO"
+                placeholder="NO"
+                required>
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <input class="form-control"
+                type="text"
+                name="NO2"
+                placeholder="NO2"
+                required>
+            </div>
+
+            <div class="col-md-4">
+                <input class="form-control"
+                type="text"
+                name="NOx"
+                placeholder="NOx"
+                required>
+            </div>
+
+            <div class="col-md-4">
+                <input class="form-control"
+                type="text"
+                name="NH3"
+                placeholder="NH3"
+                required>
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <input class="form-control"
+                type="text"
+                name="CO"
+                placeholder="CO"
+                required>
+            </div>
+
+            <div class="col-md-4">
+                <input class="form-control"
+                type="text"
+                name="SO2"
+                placeholder="SO2"
+                required>
+            </div>
+
+            <div class="col-md-4">
+                <input class="form-control"
+                type="text"
+                name="O3"
+                placeholder="O3"
+                required>
+            </div>
+
+        </div>
+
+        <br>
+
+        <button class="btn btn-primary btn-lg">
+            Predict AQI
+        </button>
+
+    </form>
+
+    <br>
+
+    {% if prediction_text %}
+
+    <div class="result-card"style="background: {{ color }};">
+
+    <h2>🌍 AQI STATUS</h2>
+
+    <h1>{{ prediction_text }}</h1>
+
+    <h4>{{ advice }}</h4>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    📊 AQI Analytics Dashboard
+</h1>
+
+<div class="row">
+
+    <div class="col-md-6 mb-4">
+
+        <div class="custom-card">
+
+            <h3>Accuracy Comparison</h3>
+
+            <img class="graph-img"
+            src="{{ url_for('static', filename='graphs/accuracy_comparison.png') }}">
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6 mb-4">
+
+        <div class="custom-card">
+
+            <h3>Confusion Matrix</h3>
+
+            <img class="graph-img"
+            src="{{ url_for('static', filename='graphs/confusion_matrix.png') }}">
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-6 mb-4">
+
+        <div class="custom-card">
+
+            <h3>Feature Importance</h3>
+
+            <img class="graph-img"
+            src="{{ url_for('static', filename='graphs/feature_importance.png') }}">
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6 mb-4">
+
+        <div class="custom-card">
+
+            <h3>AQI Distribution</h3>
+
+            <img class="graph-img"
+            src="{{ url_for('static', filename='graphs/aqi_distribution.png') }}">
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

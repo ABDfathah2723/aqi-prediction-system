@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+
+{% block title %}Dataset{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    📂 Dataset Information
+</h1>
+
+<!-- DATASET OVERVIEW -->
+
+<div class="custom-card mb-4">
+
+    <h3>📊 Dataset Overview</h3>
+
+    <br>
+
+    <p><strong>Total Rows:</strong> 29,531</p>
+
+    <p><strong>Total Columns:</strong> 16</p>
+
+    <p><strong>Dataset Type:</strong> India Air Quality Dataset</p>
+
+    <p><strong>Prediction Target:</strong> AQI_Bucket</p>
+
+</div>
+
+<!-- FEATURES -->
+
+<div class="custom-card mb-4">
+
+    <h3>🧠 Feature Columns</h3>
+
+    <br>
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <ul>
+                <li>PM2.5</li>
+                <li>PM10</li>
+                <li>NO</li>
+            </ul>
+        </div>
+
+        <div class="col-md-4">
+            <ul>
+                <li>NO2</li>
+                <li>NOx</li>
+                <li>NH3</li>
+            </ul>
+        </div>
+
+        <div class="col-md-4">
+            <ul>
+                <li>CO</li>
+                <li>SO2</li>
+                <li>O3</li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- AQI CATEGORY -->
+
+<div class="custom-card mb-4">
+
+    <h3>🌍 AQI Categories</h3>
+
+    <br>
+
+    <table class="table table-striped">
+
+        <tr>
+
+            <th>Category</th>
+
+            <th>Description</th>
+
+        </tr>
+
+        <tr>
+
+            <td>Good 😊</td>
+
+            <td>Clean Air</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Moderate 😐</td>
+
+            <td>Acceptable Air Quality</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Poor 😷</td>
+
+            <td>Unhealthy for Sensitive People</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Very Poor 🥴</td>
+
+            <td>Health Risk</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Severe ☠</td>
+
+            <td>Dangerous Air Quality</td>
+
+        </tr>
+
+    </table>
+
+</div>
+
+<!-- SAMPLE DATA -->
+
+<div class="custom-card">
+
+    <h3>📄 Sample Dataset Records</h3>
+
+    <br>
+
+    <table class="table table-bordered table-hover">
+
+        <tr>
+
+            <th>PM2.5</th>
+            <th>PM10</th>
+            <th>NO2</th>
+            <th>SO2</th>
+            <th>AQI</th>
+
+        </tr>
+
+        <tr>
+
+            <td>80</td>
+            <td>120</td>
+            <td>35</td>
+            <td>20</td>
+            <td>Moderate</td>
+
+        </tr>
+
+        <tr>
+
+            <td>150</td>
+            <td>220</td>
+            <td>55</td>
+            <td>40</td>
+            <td>Poor</td>
+
+        </tr>
+
+        <tr>
+
+            <td>40</td>
+            <td>60</td>
+            <td>15</td>
+            <td>10</td>
+            <td>Good</td>
+
+        </tr>
+
+    </table>
+
+</div>
+
+{% endblock %}
