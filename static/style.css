@@ -1,27 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
 body{
-    margin:0;
-    padding:0;
-    font-family:Arial;
-    background:#f4f7fb;
+    background: #f4f7fb;
+    margin: 0;
+    padding: 0;
 }
 
 /* NAVBAR */
 
 .navbar{
-    background:#0f2027 !important;
-    padding:15px 40px;
+    background: linear-gradient(to right,#021B2B,#01263A);
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.navbar-brand{
-    color:white !important;
-    font-size:30px;
-    font-weight:bold;
+.navbar h1{
+    color: white;
+    font-size: 42px;
+    font-weight: 700;
 }
 
-.nav-link{
-    color:white !important;
-    margin-left:20px;
-    font-size:18px;
+.nav-links a{
+    color: white;
+    text-decoration: none;
+    margin-left: 40px;
+    font-size: 22px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover{
+    color: #00c3ff;
 }
 
 /* MAIN CONTENT */
@@ -115,6 +129,69 @@ body{
     font-size:22px;
 }
 
+.hero{
+    width: 90%;
+    margin: 40px auto;
+    border-radius: 30px;
+    padding: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background:
+    linear-gradient(rgba(0,0,0,0.5),
+    rgba(0,0,0,0.5)),
+    url('https://images.unsplash.com/photo-1534088568595-a066f410bcda');
+
+    background-size: cover;
+    color: white;
+}
+
+.hero-left h1{
+    font-size: 70px;
+    margin-bottom: 20px;
+}
+
+.hero-left p{
+    font-size: 28px;
+}
+
+.search-card{
+    background: rgba(0,0,0,0.5);
+    padding: 40px;
+    border-radius: 25px;
+    width: 450px;
+}
+
+.search-card input{
+    width: 100%;
+    padding: 18px;
+    border-radius: 12px;
+    border: none;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.search-btn{
+    background: #008cff;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 12px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.search-btn:hover{
+    background: #0066cc;
+}
+
+.aqi-number{
+    font-size: 90px;
+    color: green;
+    font-weight: bold;
+}
+
 .aqi-card{
 
     background:white;
@@ -144,22 +221,19 @@ body{
 
     border-bottom:2px solid #00c6ff;
 }
+
 .result-card{
-
-    margin-top:30px;
-
-    background:linear-gradient(135deg,#00c6ff,#0072ff);
-
-    color:white;
-
-    padding:30px;
-
-    border-radius:20px;
-
-    text-align:center;
-
-    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    width: 90%;
+    margin: auto;
+    background: white;
+    border-radius: 25px;
+    padding: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
+
 .stats-card{
 
     background:white;
@@ -194,4 +268,25 @@ body{
     font-size:18px;
 
     margin-top:10px;
+}
+
+.info-boxes{
+    width: 90%;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 30px;
+}
+
+.box{
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.box h1{
+    font-size: 60px;
+    color: #008cff;
 }
