@@ -23,11 +23,36 @@
 
         <div class="aqi-card">
 
-            <h2>🌡 Live Weather</h2>
+            <h2>🌍 Live Weather</h2>
+
+            <form method="POST" action="/weather">
+
+                <input type="text"
+                name="city"
+                placeholder="Enter City"
+                required
+                class="form-control mb-3">
+
+                <button type="submit"
+                class="btn btn-primary">
+
+                Search
+
+                </button>
+
+            </form>
+
+            {% if city %}
+
+            <hr>
+
+            <h3>{{ city }}</h3>
 
             <h1>{{ temp }}°C</h1>
 
             <h4>Humidity: {{ humidity }}%</h4>
+
+            {% endif %}
 
         </div>
 

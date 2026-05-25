@@ -15,30 +15,10 @@ API_KEY = os.getenv("API_KEY")
 
 # HOME PAGE
 @app.route('/')
+
 def home():
 
-    city = "Bangalore"
-
-    weather_url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}"
-
-    response = requests.get(weather_url)
-
-    data = response.json()
-
-    print(data)
-
-    temp = round(data["main"]["temp"] - 273.15, 2)
-
-    humidity = data["main"]["humidity"]
-
-    return render_template(
-
-        "index.html",
-
-        temp=temp,
-
-        humidity=humidity
-    )
+    return render_template('index.html')
 
 
 # DASHBOARD PAGE
@@ -62,6 +42,34 @@ def history():
     return render_template(
         'history.html',
         rows=rows
+    )
+
+
+@app.route('/weather', methods=['POST'])
+
+def weather():
+
+    city = request.form['city']
+
+    weather_url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}"
+
+    response = requests.get(weather_url)
+
+    data = response.json()
+
+    temp = round(data["main"]["temp"] - 273.15, 2)
+
+    humidity = data["main"]["humidity"]
+
+    return render_template(
+
+        'index.html',
+
+        city=city,
+
+        temp=temp,
+
+        humidity=humidity
     )
 
 # ADD LIVE AQI ROUTE
