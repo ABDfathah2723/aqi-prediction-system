@@ -1,3 +1,12 @@
+flask
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+joblib
+gunicorn
+
 altair==5.5.0
 annotated-doc==0.0.4
 annotated-types==0.7.0
