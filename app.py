@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import os
 import requests
 import numpy as np
 import joblib
@@ -9,6 +10,8 @@ app = Flask(__name__)
 # Load trained model
 model = joblib.load("best_model.pkl")
 
+# LOAD API KEY
+API_KEY = os.getenv("API_KEY")
 
 # HOME PAGE
 @app.route('/')
