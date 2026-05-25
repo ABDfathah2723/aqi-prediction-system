@@ -184,50 +184,29 @@ def predict():
         O3
     ]])
 
-    prediction = model.predict(features)
+    prediction = model.predict(...)
 
-    categories = [
-        "Good 😊",
-        "Moderate 😐",
-        "Poor 😷",
-        "Very Poor 🥴",
-        "Severe ☠"
-    ]
+    # AQI CATEGORY + COLOR + HEALTH ADVICE
 
-    result = categories[prediction[0]]
+    if prediction <= 50:
+        category = "Good 😊"
+        color = "#00e400"
+        advice = "Air quality is good. Safe for outdoor activities."
 
-    color = ""
-    advice = ""
+    elif prediction <= 100:
+        category = "Moderate 😐"
+        color = "#ffcc00"
+        advice = "Air quality is acceptable. Sensitive people should be careful."
 
-    if "Good" in result:
-
-        advice = "Air quality is good 😊"
-
-        color = "#28a745"
-
-    elif "Moderate" in result:
-
-        advice = "Air quality is acceptable 😐"
-
-        color = "#ffc107"
-
-    elif "Poor" in result:
-
-        advice = "Sensitive people should avoid outdoor activities 😷"
-
-        color = "#fd7e14"
-
-    elif "Very Poor" in result:
-
-        advice = "Wear mask while going outside 🥴"
-
-        color = "#dc3545"
+    elif prediction <= 200:
+        category = "Poor 😷"
+        color = "#ff7e00"
+        advice = "Avoid outdoor exercise. Wear mask if needed."
 
     else:
-
-        advice = "Avoid outdoor activities ☠"
-
-        color = "#7b0000"
+        category = "Severe ☠️"
+        color = "#ff0000"
+        advice = "Stay indoors. Avoid going outside."
 
     # SAVE TO DATABASE
 
@@ -271,12 +250,11 @@ def predict():
 
     'index.html',
 
-    prediction_text=result,
-
-    advice=advice,
-
-    color=color
-)
+    prediction_text=prediction,
+    category=category,
+    color=color,
+    advice=advice
+    )
 
 
 if __name__ == "__main__":
