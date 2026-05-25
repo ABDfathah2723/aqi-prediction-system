@@ -14,23 +14,21 @@
 
         <div class="hero-text">
 
-            <h1>
-                🌍 Air Quality Detection
-            </h1>
+            <h1>🌍 Air Quality Detection</h1>
 
             <p>
                 Predict Air Quality Index using
                 Machine Learning Algorithms
             </p>
 
-            <p class="sub-text">
+            <p class="hero-subtext">
                 Real-time AQI monitoring system using
                 Machine Learning and Live City Search.
             </p>
 
         </div>
 
-        <!-- LIVE AQI CARD -->
+        <!-- RIGHT AQI CARD -->
 
         <div class="aqi-card">
 
@@ -38,44 +36,38 @@
 
             <form method="POST" action="/aqi">
 
-                <input type="text"
-                name="city"
-                placeholder="Enter city name..."
-                required>
+                <input
+                    type="text"
+                    name="city"
+                    placeholder="Enter city name..."
+                    required
+                    class="form-control city-input"
+                >
 
-                <button type="submit">
-                    🔍 Search AQI
+                <button
+                    type="submit"
+                    class="search-btn"
+                >
+                    🔎 Search AQI
                 </button>
 
             </form>
 
-            <!-- CITY RESULT -->
-
             {% if city %}
 
-            <div class="live-result">
+            <div class="aqi-result">
 
-                <h2>{{ city }}</h2>
+                <hr>
 
-                <h1 class="live-aqi">
-                    {{ aqi }}
-                </h1>
+                <h3>{{ city }}</h3>
 
-                <h3>{{ category }}</h3>
+                <h1>AQI: {{ aqi }}</h1>
 
-                <div class="pollution-values">
+                <h4>PM2.5 : {{ pm25 }}</h4>
 
-                    <div>
-                        <span>PM2.5</span>
-                        <h4>{{ pm25 }}</h4>
-                    </div>
+                <h4>PM10 : {{ pm10 }}</h4>
 
-                    <div>
-                        <span>PM10</span>
-                        <h4>{{ pm10 }}</h4>
-                    </div>
-
-                </div>
+                <h4>{{ category }}</h4>
 
             </div>
 
@@ -87,204 +79,150 @@
 
 </div>
 
-<!-- INFO BOXES -->
-
-<div class="info-boxes">
-
-    <div class="info-card">
-
-        <div class="icon">📈</div>
-
-        <h1>95%</h1>
-
-        <p>Model Accuracy</p>
-
-        <span>High Accuracy Prediction</span>
-
-    </div>
-
-    <div class="info-card">
-
-        <div class="icon">🗂</div>
-
-        <h1>29K+</h1>
-
-        <p>Dataset Records</p>
-
-        <span>Real Pollution Data</span>
-
-    </div>
-
-    <div class="info-card">
-
-        <div class="icon">🤖</div>
-
-        <h1>3</h1>
-
-        <p>ML Algorithms</p>
-
-        <span>Advanced Models</span>
-
-    </div>
-
-    <div class="info-card">
-
-        <div class="icon">🌍</div>
-
-        <h1>5</h1>
-
-        <p>AQI Categories</p>
-
-        <span>Good → Severe</span>
-
-    </div>
-
-</div>
-
 <!-- STATS SECTION -->
 
 <div class="stats-container">
 
     <div class="stats-card">
-
+        <div class="stats-icon">📈</div>
         <h1>95%</h1>
-
         <p>Model Accuracy</p>
-
     </div>
 
     <div class="stats-card">
-
+        <div class="stats-icon">🗂️</div>
         <h1>29K+</h1>
-
         <p>Dataset Records</p>
-
     </div>
 
     <div class="stats-card">
-
+        <div class="stats-icon">🤖</div>
         <h1>3</h1>
-
         <p>ML Algorithms</p>
-
     </div>
 
     <div class="stats-card">
-
+        <div class="stats-icon">🌍</div>
         <h1>5</h1>
-
         <p>AQI Categories</p>
-
     </div>
 
 </div>
 
-<!-- AQI PREDICTION FORM -->
+<!-- PREDICTION SECTION -->
 
-<div class="prediction-container">
+<div class="prediction-section">
 
-    <div class="prediction-card">
+    <h1>🌍 Predict AQI</h1>
 
-        <h1>
-            🌍 Predict AQI
-        </h1>
+    <p>
+        Enter pollution values to predict AQI level
+    </p>
 
-        <p>
-            Enter pollution values to predict AQI level
-        </p>
+    <form action="/predict" method="POST">
 
-        <form action="/predict" method="POST">
+        <div class="input-grid">
 
-            <!-- ROW 1 -->
-
-            <div class="input-grid">
-
-                <input type="text"
+            <input
+                class="form-control"
+                type="text"
                 name="PM25"
                 placeholder="PM2.5"
-                required>
+                required
+            >
 
-                <input type="text"
+            <input
+                class="form-control"
+                type="text"
                 name="PM10"
                 placeholder="PM10"
-                required>
+                required
+            >
 
-                <input type="text"
+            <input
+                class="form-control"
+                type="text"
                 name="NO"
                 placeholder="NO"
-                required>
+                required
+            >
 
-            </div>
-
-            <!-- ROW 2 -->
-
-            <div class="input-grid">
-
-                <input type="text"
+            <input
+                class="form-control"
+                type="text"
                 name="NO2"
                 placeholder="NO2"
-                required>
+                required
+            >
 
-                <input type="text"
+            <input
+                class="form-control"
+                type="text"
                 name="NOx"
                 placeholder="NOx"
-                required>
+                required
+            >
 
-                <input type="text"
+            <input
+                class="form-control"
+                type="text"
                 name="NH3"
                 placeholder="NH3"
-                required>
+                required
+            >
 
-            </div>
-
-            <!-- ROW 3 -->
-
-            <div class="input-grid">
-
-                <input type="text"
+            <input
+                class="form-control"
+                type="text"
                 name="CO"
                 placeholder="CO"
-                required>
+                required
+            >
 
-                <input type="text"
+            <input
+                class="form-control"
+                type="text"
                 name="SO2"
                 placeholder="SO2"
-                required>
+                required
+            >
 
-                <input type="text"
+            <input
+                class="form-control"
+                type="text"
                 name="O3"
                 placeholder="O3"
-                required>
+                required
+            >
 
-            </div>
+        </div>
 
-            <button class="predict-btn">
+        <button class="predict-btn">
 
-                🚀 Predict AQI
+            🚀 Predict AQI
 
-            </button>
+        </button>
 
-        </form>
+    </form>
+
+    <!-- RESULT -->
+
+    {% if prediction_text %}
+
+    <div
+        class="result-card"
+        style="background: {{ color }};">
+
+        <h2>🌍 AQI STATUS</h2>
+
+        <h1>{{ prediction_text }}</h1>
+
+        <h4>{{ advice }}</h4>
 
     </div>
 
-</div>
-
-<!-- PREDICTION RESULT -->
-
-{% if prediction_text %}
-
-<div class="prediction-result"
-style="background: {{ color }};">
-
-    <h2>🌍 AQI STATUS</h2>
-
-    <h1>{{ prediction_text }}</h1>
-
-    <p>{{ advice }}</p>
+    {% endif %}
 
 </div>
-
-{% endif %}
 
 {% endblock %}
