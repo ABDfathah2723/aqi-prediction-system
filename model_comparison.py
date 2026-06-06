@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
 
@@ -50,6 +50,16 @@ dt.fit(X_train, y_train)
 knn.fit(X_train, y_train)
 rf.fit(X_train, y_train)
 
+cv_scores = cross_val_score(
+    rf,
+    X,
+    y,
+    cv=5
+)
+
+print("Cross Validation Scores:", cv_scores)
+print("Average CV Score:", cv_scores.mean())
+
 # Predictions
 dt_pred = dt.predict(X_test)
 knn_pred = knn.predict(X_test)
@@ -77,7 +87,7 @@ plt.ylabel("Accuracy")
 
 plt.title("Algorithm Comparison")
 
-plt.savefig("graphs/accuracy_comparison.png")
+plt.savefig('static/graphs/accuracy_comparison.png')
 plt.show()
 
 # Confusion Matrrix Graph 
@@ -92,7 +102,7 @@ plt.title("Random Forest Confusion Matrix")
 plt.xlabel("Predicted")
 
 plt.ylabel("Actual")
-plt.savefig("graphs/confusion_matrix.png")
+plt.savefig('static/graphs/confusion_matrix.png')
 plt.show()
 
 # Feature Importance Graph
@@ -111,7 +121,7 @@ plt.xlabel("Features")
 plt.ylabel("Importance Score")
 
 plt.xticks(rotation=45)
-plt.savefig("graphs/feature_importance.png")
+plt.savefig("static/graphs/feature_importance.png")
 plt.show()
 
 # AQI Distribution Pie Chart
@@ -124,7 +134,7 @@ data['AQI_Bucket'].value_counts().plot(
 plt.title("AQI Category Distribution")
 
 plt.ylabel("")
-plt.savefig("graphs/aqi_distribution.png")
+plt.savefig("static/graphs/aqi_distribution.png")
 plt.show()
 
 import joblib

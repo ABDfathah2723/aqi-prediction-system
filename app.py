@@ -162,49 +162,75 @@ def about():
 @app.route('/predict', methods=['POST'])
 def predict():
 
-    PM25 = float(request.form['PM25'])
-    PM10 = float(request.form['PM10'])
-    NO = float(request.form['NO'])
-    NO2 = float(request.form['NO2'])
-    NOx = float(request.form['NOx'])
-    NH3 = float(request.form['NH3'])
-    CO = float(request.form['CO'])
-    SO2 = float(request.form['SO2'])
-    O3 = float(request.form['O3'])
+    try:
+        PM25 = float(request.form['PM25'])
+        PM10 = float(request.form['PM10'])
+        NO = float(request.form['NO'])
+        NO2 = float(request.form['NO2'])
+        NOx = float(request.form['NOx'])
+        NH3 = float(request.form['NH3'])
+        CO = float(request.form['CO'])
+        SO2 = float(request.form['SO2'])
+        O3 = float(request.form['O3'])
 
-    features = np.array([[
-        PM25,
-        PM10,
-        NO,
-        NO2,
-        NOx,
-        NH3,
-        CO,
-        SO2,
-        O3
-    ]])
+    except ValueError:
+        return render_template(
+            'index.html',
+            prediction_text="Invalid Input! Please enter numbers only."
+        )
 
-    prediction = model.predict(...)
+    import pandas as pd
+
+    features = pd.DataFrame([{
+        "PM2.5": PM25,
+        "PM10": PM10,
+        "NO": NO,
+        "NO2": NO2,
+        "NOx": NOx,
+        "NH3": NH3,
+        "CO": CO,
+        "SO2": SO2,
+        "O3": O3
+    }])
+
+    prediction = model.predict(features)[0]
+
+    aqi_labels = {
+    0: "Good 😊",
+    1: "Moderate 😐",
+    2: "Poor 😷",
+    3: "Very Poor 🤢",
+    4: "Severe ☠️"
+    }
+
+    prediction = aqi_labels.get(prediction, str(prediction))
+
+    confidence = round(
+    max(model.predict_proba(features)[0]) * 100,
+    2
+    )
 
     # AQI CATEGORY + COLOR + HEALTH ADVICE
 
-    if prediction <= 50:
-        category = "Good 😊"
+    category = prediction
+
+    if "Good" in category:
         color = "#00e400"
         advice = "Air quality is good. Safe for outdoor activities."
 
-    elif prediction <= 100:
-        category = "Moderate 😐"
+    elif "Moderate" in category:
         color = "#ffcc00"
         advice = "Air quality is acceptable. Sensitive people should be careful."
 
-    elif prediction <= 200:
-        category = "Poor 😷"
+    elif "Poor" in category:
         color = "#ff7e00"
         advice = "Avoid outdoor exercise. Wear mask if needed."
 
+    elif "Very Poor" in category:
+        color = "#ff4500"
+        advice = "Limit outdoor activities."
+
     else:
-        category = "Severe ☠️"
         color = "#ff0000"
         advice = "Stay indoors. Avoid going outside."
 
@@ -241,19 +267,19 @@ def predict():
         CO,
         SO2,
         O3,
-        result
+        prediction
     ))
 
     conn.commit()
 
     return render_template(
-
     'index.html',
 
     prediction_text=prediction,
     category=category,
     color=color,
-    advice=advice
+    advice=advice,
+    confidence=confidence
     )
 
 
