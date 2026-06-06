@@ -16,9 +16,6 @@ body{
 
 .hero-section{
 
-    width:100%;
-    min-height:80vh;
-
     background:
     linear-gradient(rgba(0,0,0,0.6),
     rgba(0,0,0,0.7)),
@@ -28,7 +25,11 @@ body{
     background-position:center;
 
     padding:60px;
-
+    position: relative;
+    height: 450px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 30px;
 }
 
 .hero-overlay{
@@ -842,7 +843,6 @@ body{
     color:#d6d6d6;
 }
 
-```css
 /* NAVBAR */
 
 .navbar-custom{
@@ -948,4 +948,79 @@ body{
 
     color:#cfd8dc;
 }
-```
+
+/* =====================================
+   FINAL PROJECT ENHANCEMENT
+===================================== */
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    overflow-x:hidden;
+}
+
+.custom-card,
+.history-card,
+.perf-card,
+.feature-card,
+.objective-card,
+.tech-card,
+.model-card,
+.stat-card{
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,.25);
+
+    transition:.3s ease;
+}
+
+.custom-card:hover,
+.history-card:hover,
+.perf-card:hover,
+.feature-card:hover,
+.objective-card:hover,
+.tech-card:hover,
+.model-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 0 20px rgba(37,99,235,.35);
+}
+
+.predict-grid input:focus,
+.city-input:focus{
+
+    border:2px solid #38bdf8;
+
+    box-shadow:
+    0 0 12px rgba(56,189,248,.4);
+}
+
+.graph-img{
+
+    background:white;
+
+    padding:10px;
+
+    border-radius:15px;
+}
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#0f172a;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#2563eb;
+    border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#3b82f6;
+}
