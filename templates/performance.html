@@ -4,90 +4,141 @@
 
 {% block content %}
 
-<div class="custom-card">
+<div class="performance-container">
 
-    <h1 class="mb-4">
-        📊 Performance Analysis
-    </h1>
+    <h1 class="page-title">📊 Performance Analysis</h1>
 
-    <table class="table table-striped table-hover">
+    <!-- Summary Cards -->
+    <div class="perf-cards">
 
-        <thead class="table-dark">
+        <div class="perf-card">
+            <h2>83.67%</h2>
+            <p>Best Accuracy</p>
+        </div>
 
-            <tr>
+        <div class="perf-card">
+            <h2>Random Forest</h2>
+            <p>Best Model</p>
+        </div>
 
-                <th>Algorithm</th>
+        <div class="perf-card">
+            <h2>74.67%</h2>
+            <p>CV Score</p>
+        </div>
 
-                <th>Accuracy</th>
+        <div class="perf-card">
+            <h2>29,531</h2>
+            <p>Records</p>
+        </div>
 
-                <th>Precision</th>
+    </div>
 
-                <th>Recall</th>
+    <!-- Performance Table -->
+    <div class="custom-card">
 
-                <th>F1 Score</th>
+        <h2>🏆 Model Performance Comparison</h2>
 
-            </tr>
+        <table class="table table-dark table-striped table-hover mt-3">
 
-        </thead>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Algorithm</th>
+                    <th>Accuracy</th>
+                    <th>Precision</th>
+                    <th>Recall</th>
+                    <th>F1 Score</th>
+                </tr>
+            </thead>
 
-        <tbody>
+            <tbody>
 
-            <tr>
+                <tr>
+                    <td>🥇</td>
+                    <td>Random Forest</td>
+                    <td>83.67%</td>
+                    <td>84%</td>
+                    <td>84%</td>
+                    <td>84%</td>
+                </tr>
 
-                <td>Decision Tree</td>
+                <tr>
+                    <td>🥈</td>
+                    <td>KNN</td>
+                    <td>79.84%</td>
+                    <td>80%</td>
+                    <td>79%</td>
+                    <td>79%</td>
+                </tr>
 
-                <td>89%</td>
+                <tr>
+                    <td>🥉</td>
+                    <td>Decision Tree</td>
+                    <td>76.11%</td>
+                    <td>76%</td>
+                    <td>76%</td>
+                    <td>76%</td>
+                </tr>
 
-                <td>88%</td>
+            </tbody>
 
-                <td>87%</td>
+        </table>
 
-                <td>87%</td>
+    </div>
 
-            </tr>
+    <!-- Accuracy Graph -->
+    <div class="custom-card">
 
-            <tr>
+        <h2>📈 Accuracy Comparison</h2>
 
-                <td>KNN</td>
+        <img
+            class="graph-img"
+            src="{{ url_for('static', filename='graphs/accuracy_comparison.png') }}"
+            alt="Accuracy Comparison">
 
-                <td>85%</td>
+    </div>
 
-                <td>84%</td>
+    <!-- Model Analysis -->
+    <div class="analysis-grid">
 
-                <td>83%</td>
+        <div class="analysis-card">
+            <h3>🌲 Random Forest</h3>
+            <p>
+                Highest performing model with excellent classification
+                accuracy and generalization.
+            </p>
+        </div>
 
-                <td>83%</td>
+        <div class="analysis-card">
+            <h3>📍 KNN</h3>
+            <p>
+                Good performance and suitable for neighborhood-based
+                classification problems.
+            </p>
+        </div>
 
-            </tr>
+        <div class="analysis-card">
+            <h3>🌳 Decision Tree</h3>
+            <p>
+                Easy to interpret and visualize but less accurate
+                than Random Forest.
+            </p>
+        </div>
 
-            <tr>
+    </div>
 
-                <td>Random Forest</td>
+    <!-- Conclusion -->
+    <div class="conclusion-box">
 
-                <td>95%</td>
+        <h2>🏆 Final Conclusion</h2>
 
-                <td>94%</td>
+        <p>
+            Random Forest achieved the highest accuracy of
+            <strong>83.67%</strong> and was selected as the final model
+            for AQI prediction.
+        </p>
 
-                <td>94%</td>
-
-                <td>94%</td>
-
-            </tr>
-
-        </tbody>
-
-    </table>
-
-</div>
-
-<br>
-
-<div class="custom-card">
-
-    <h2>📈 Accuracy Comparison</h2>
-
-    <img class="graph-img"
-    src="{{ url_for('static', filename='graphs/accuracy_comparison.png') }}">
+    </div>
 
 </div>
 

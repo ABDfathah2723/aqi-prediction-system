@@ -10,56 +10,93 @@
 
 <!-- DATASET OVERVIEW -->
 
-<div class="custom-card mb-4">
-
     <h3>📊 Dataset Overview</h3>
 
     <br>
 
-    <p><strong>Total Rows:</strong> 29,531</p>
+<div class="stats-grid">
+        <div class="stat-card">
+            <h2>29,531</h2>
+            <p>Total Records</p>
+        </div>
 
-    <p><strong>Total Columns:</strong> 16</p>
+        <div class="stat-card">
+            <h2>16</h2>
+            <p>Total Columns</p>
+        </div>
 
-    <p><strong>Dataset Type:</strong> India Air Quality Dataset</p>
+        <div class="stat-card">
+            <h2>9</h2>
+            <p>Input Features</p>
+        </div>
 
-    <p><strong>Prediction Target:</strong> AQI_Bucket</p>
-
+        <div class="stat-card">
+            <h2>5</h2>
+            <p>AQI Classes</p>
+        </div>
+        <div class="stat-card">
+            <h2>0</h2>
+            <p>Missing Values</p>
+        </div>
 </div>
 
+
 <!-- FEATURES -->
+<h2>🧪 Pollution Features</h2>
+<div class="feature-grid">
 
-<div class="custom-card mb-4">
+    <div class="feature-card">
+    <h3>PM2.5</h3>
+    <p>Particulate Matter 2.5</p>
+    <small>Fine particles smaller than 2.5 microns</small>
+    </div>
 
-    <h3>🧠 Feature Columns</h3>
+    <div class="feature-card">
+    <h3>PM10</h3>
+    <p>Particulate Matter 10</p>
+    <small>Dust and smoke particles</small>
+    </div>
 
-    <br>
+    <div class="feature-card">
+    <h3>NO</h3>
+    <p>Nitric Oxide</p>
+    <small>Traffic related pollutant</small>
+    </div>
 
-    <div class="row">
+    <div class="feature-card">
+    <h3>NO₂</h3>
+    <p>Nitrogen Dioxide</p>
+    <small>Harmful gas from vehicles</small>
+    </div>
 
-        <div class="col-md-4">
-            <ul>
-                <li>PM2.5</li>
-                <li>PM10</li>
-                <li>NO</li>
-            </ul>
-        </div>
+    <div class="feature-card">
+    <h3>NOx</h3>
+    <p>Nitric Oxide</p>
+    <small>Combination of nitrogen gases</small>
+    </div>
 
-        <div class="col-md-4">
-            <ul>
-                <li>NO2</li>
-                <li>NOx</li>
-                <li>NH3</li>
-            </ul>
-        </div>
+    <div class="feature-card">
+    <h3>NH3</h3>
+    <p>Ammonia</p>
+    <small>Agricultural emissions</small>
+    </div>
 
-        <div class="col-md-4">
-            <ul>
-                <li>CO</li>
-                <li>SO2</li>
-                <li>O3</li>
-            </ul>
-        </div>
+    <div class="feature-card">
+    <h3>CO</h3>
+    <p>Sulfur Dioxide</p>
+    <small>Toxic gas from fuel combustion</small>
+    </div>
 
+    <div class="feature-card">
+    <h3>SO₂</h3>
+    <p>Carbon Monoxide</p>
+    <small>Industrial pollutant</small>
+    </div>
+
+    <div class="feature-card">
+    <h3>O3</h3>
+    <p>Ozone</p>
+    <small>Ground level ozone pollutant</small>
     </div>
 
 </div>
@@ -72,57 +109,32 @@
 
     <br>
 
-    <table class="table table-striped">
+    <div class="col-md-6 mb-4">
 
-        <tr>
+        <div class="custom-card">
 
-            <th>Category</th>
+            <h3>AQI Distribution</h3>
 
-            <th>Description</th>
+            <img class="graph-img"
+            src="{{ url_for('static', filename='graphs/aqi_category_count.png') }}">
 
-        </tr>
+        </div>
 
-        <tr>
+    </div>
 
-            <td>Good 😊</td>
+    <div class="aqi-cards">
 
-            <td>Clean Air</td>
+        <div class="aqi-good">😊 Good</div>
 
-        </tr>
+        <div class="aqi-moderate">😐 Moderate</div>
 
-        <tr>
+        <div class="aqi-poor">😷 Poor</div>
 
-            <td>Moderate 😐</td>
+        <div class="aqi-vpoor">☣️ Very Poor</div>
 
-            <td>Acceptable Air Quality</td>
+        <div class="aqi-severe">☠️ Severe</div>
 
-        </tr>
-
-        <tr>
-
-            <td>Poor 😷</td>
-
-            <td>Unhealthy for Sensitive People</td>
-
-        </tr>
-
-        <tr>
-
-            <td>Very Poor 🥴</td>
-
-            <td>Health Risk</td>
-
-        </tr>
-
-        <tr>
-
-            <td>Severe ☠</td>
-
-            <td>Dangerous Air Quality</td>
-
-        </tr>
-
-    </table>
+    </div>
 
 </div>
 
@@ -177,6 +189,24 @@
         </tr>
 
     </table>
+
+</div>
+
+<div class="info-card">
+
+<h2>📊 Dataset Summary</h2>
+
+<p><b>Source:</b> India Air Quality Dataset</p>
+
+<p><b>Records:</b> 29,531</p>
+
+<p><b>Columns:</b> 16</p>
+
+<p><b>Features Used:</b> 9</p>
+
+<p><b>Target Variable:</b> AQI_Bucket</p>
+
+<p><b>Missing Values:</b> 0</p>
 
 </div>
 

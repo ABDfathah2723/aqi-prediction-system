@@ -4,13 +4,13 @@
 
 {% block content %}
 
-<h1 class="mb-4">
+<h1 class="page-title">
     ℹ️ About Project
 </h1>
 
 <!-- PROJECT DESCRIPTION -->
 
-<div class="custom-card mb-4">
+<div class="about-section">
 
     <h3>🌍 Project Description</h3>
 
@@ -35,129 +35,144 @@
 
 </div>
 
-<!-- OBJECTIVES -->
+<div class="stats-grid">
 
-<div class="custom-card mb-4">
+    <div class="stat-card">
+    <h2>29,531</h2>
+    <p>Records</p>
+    </div>
 
-    <h3>🎯 Project Objectives</h3>
+    <div class="stat-card">
+    <h2>9</h2>
+    <p>Features</p>
+    </div>
 
-    <br>
+    <div class="stat-card">
+    <h2>83.67%</h2>
+    <p>Best Accuracy</p>
+    </div>
 
-    <ul>
-
-        <li>Predict AQI categories using ML</li>
-
-        <li>Compare multiple algorithms</li>
-
-        <li>Visualize pollution analytics</li>
-
-        <li>Create interactive web application</li>
-
-        <li>Improve environmental awareness</li>
-
-    </ul>
+    <div class="stat-card">
+    <h2>5</h2>
+    <p>AQI Classes</p>
+    </div>
 
 </div>
+
+<!-- OBJECTIVES -->
+
+<h2>🎯 Project Objectives</h2>
+
+<div class="objective-grid">
+
+    <div class="objective-card">
+        <h4>🔍 AQI Prediction</h4>
+        <p>Predict air quality category using machine learning algorithms.</p>
+    </div>
+
+    <div class="objective-card">
+        <h4>📊 Data Analysis</h4>
+        <p>Analyze pollution parameters and AQI trends.</p>
+    </div>
+
+    <div class="objective-card">
+        <h4>⚙️ Model Comparison</h4>
+        <p>Compare Decision Tree, KNN and Random Forest performance.</p>
+    </div>
+
+    <div class="objective-card">
+        <h4>🌐 Web Dashboard</h4>
+        <p>Provide interactive visualizations and predictions.</p>
+    </div>
+
+</div>
+
 
 <!-- TECHNOLOGIES -->
 
-<div class="custom-card mb-4">
+<div class="about-section">
+    <h2>🛠 Technologies Used</h2>
 
-    <h3>💻 Technologies Used</h3>
+    <div class="tech-grid">
 
-    <br>
+        <div class="tech-card">🐍Python</div>
 
-    <table class="table table-striped">
+        <div class="tech-card">🌐Flask</div>
 
-        <tr>
+        <div class="tech-card">🤖Machine Learning</div>
 
-            <th>Technology</th>
+        <div class="tech-card">🌳Random Forest</div>
 
-            <th>Purpose</th>
+        <div class="tech-card">🗄SQLite</div>
 
-        </tr>
+        <div class="tech-card">🎨HTML/CSS</div>
 
-        <tr>
+        <div class="tech-card">Bootstrap</div>
 
-            <td>Python</td>
+        <div class="tech-card">📊Pandas</div>
 
-            <td>Machine Learning</td>
+        <div class="tech-card">🧠 Scikit-Learn</div>
 
-        </tr>
-
-        <tr>
-
-            <td>Flask</td>
-
-            <td>Backend Web Framework</td>
-
-        </tr>
-
-        <tr>
-
-            <td>HTML/CSS</td>
-
-            <td>Frontend Design</td>
-
-        </tr>
-
-        <tr>
-
-            <td>Bootstrap</td>
-
-            <td>Responsive UI</td>
-
-        </tr>
-
-        <tr>
-
-            <td>SQLite</td>
-
-            <td>Database</td>
-
-        </tr>
-
-    </table>
-
+    </div>
 </div>
+
 
 <!-- ALGORITHMS -->
+<div class="about-section">
+    <h2>🤖 Machine Learning Models</h2>
+    <div class="model-grid">
 
-<div class="custom-card mb-4">
+        <div class="model-card">
+        🌳
+        <h3>Random Forest</h3>
+        <h2>83.67%</h2>
+        </div>
 
-    <h3>🧠 Algorithms Used</h3>
+        <div class="model-card">
+        📍
+        <h3>KNN</h3>
+        <h2>79.84%</h2>
+        </div>
 
-    <br>
+        <div class="model-card">
+        🌲
+        <h3>Decision Tree</h3>
+        <h2>76.11%</h2>
+        </div>
 
-    <ul>
-
-        <li>Decision Tree Classifier</li>
-
-        <li>K-Nearest Neighbors (KNN)</li>
-
-        <li>Random Forest Classifier</li>
-
-    </ul>
-
+    </div>
 </div>
 
-<!-- WORKFLOW -->
 
-<div class="custom-card">
 
-    <h3>⚙️ System Workflow</h3>
+<!-- Future scop -->
+<h2>🚀 Future Scope</h2>
 
-    <br>
+<div class="future-grid">
 
-    <p>
+    <div class="future-card">
+        📡 Real-Time AQI Monitoring
+    </div>
 
-        Dataset → Data Cleaning → Feature Selection →
-        Model Training → Comparative Analysis →
-        Best Model Selection → Flask Deployment →
-        AQI Prediction
+    <div class="future-card">
+        ☁ Weather Data Integration
+    </div>
 
-    </p>
+    <div class="future-card">
+        🏙 City-wise AQI Forecasting
+    </div>
+
+    <div class="future-card">
+        📱 Mobile Application
+    </div>
+
+    <div class="future-card">
+        🌍 IoT Sensor Integration
+    </div>
+
+    <div class="future-card">
+        🤖 Deep Learning Models
+    </div>
 
 </div>
-
 {% endblock %}

@@ -1,0 +1,4 @@
+Algorithm,Accuracy
+Decision Tree,76.15
+KNN,79.84
+Random Forest,83.35

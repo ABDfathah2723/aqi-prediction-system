@@ -1,122 +1,99 @@
 from flask import Flask, render_template, request
 import os
 import requests
-import numpy as np
-import joblib
 import sqlite3
+import joblib
+import pandas as pd
 
 app = Flask(__name__)
 
-# Load trained model
+# ==========================
+# LOAD MODEL
+# ==========================
+
 model = joblib.load("best_model.pkl")
 
-# LOAD API KEY
-API_KEY = os.getenv("API_KEY")
+# ==========================
+# API KEY
+# ==========================
 
+API_KEY = os.getenv("9529e6bfcb617d03055e4d73a9ce3132")
+
+# ==========================
 # HOME PAGE
+# ==========================
+
 @app.route('/')
-
 def home():
-
     return render_template('index.html')
 
-
+# ==========================
 # DASHBOARD PAGE
+# ==========================
+
 @app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html')
 
+# ==========================
+# DATASET PAGE
+# ==========================
 
+@app.route('/dataset')
+def dataset():
+    return render_template('dataset.html')
+
+# ==========================
+# ABOUT PAGE
+# ==========================
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+# ==========================
+# PERFORMANCE PAGE
+# ==========================
+
+@app.route('/performance')
+def performance():
+    return render_template('performance.html')
+
+# ==========================
 # HISTORY PAGE
+# ==========================
+
 @app.route('/history')
 def history():
 
     conn = sqlite3.connect("predictions.db")
-
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM predictions")
+    cursor.execute("""
+    SELECT * FROM predictions
+    ORDER BY id DESC
+    """)
 
     rows = cursor.fetchall()
 
+    cursor.execute("""
+    SELECT COUNT(*) FROM predictions
+    """)
+
+    total_predictions = cursor.fetchone()[0]
+
+    conn.close()
+
     return render_template(
         'history.html',
-        rows=rows
-    )
-@app.route('/aqi', methods=['POST'])
-
-def aqi():
-
-    city = request.form['city']
-
-    # STEP 1 → GET CITY COORDINATES
-
-    geo_url = f"http://api.openweathermap.org/geo/1.0/direct?q={city}&limit=1&appid={API_KEY}"
-
-    geo_response = requests.get(geo_url)
-
-    geo_data = geo_response.json()
-
-    lat = geo_data[0]['lat']
-
-    lon = geo_data[0]['lon']
-
-    # STEP 2 → GET AQI DATA
-
-    aqi_url = f"http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid={API_KEY}"
-
-    aqi_response = requests.get(aqi_url)
-
-    aqi_data = aqi_response.json()
-
-    # AQI VALUE
-
-    aqi_index = aqi_data['list'][0]['main']['aqi']
-
-    # POLLUTION COMPONENTS
-
-    pm25 = aqi_data['list'][0]['components']['pm2_5']
-
-    pm10 = aqi_data['list'][0]['components']['pm10']
-
-    # AQI CATEGORY
-
-    if aqi_index == 1:
-
-        category = "Good 😊"
-
-    elif aqi_index == 2:
-
-        category = "Fair 🙂"
-
-    elif aqi_index == 3:
-
-        category = "Moderate 😐"
-
-    elif aqi_index == 4:
-
-        category = "Poor 😷"
-
-    else:
-
-        category = "Very Poor ☠"
-
-    return render_template(
-
-        'index.html',
-
-        city=city,
-
-        aqi=aqi_index,
-
-        pm25=pm25,
-
-        pm10=pm10,
-
-        category=category
+        rows=rows,
+        total_predictions=total_predictions
     )
 
-# ADD LIVE AQI ROUTE
+# ==========================
+# LIVE AQI PAGE
+# ==========================
+
 @app.route('/live/<city>')
 def live(city):
 
@@ -128,6 +105,9 @@ def live(city):
         "chennai": (13.0827, 80.2707),
         "mumbai": (19.0760, 72.8777)
     }
+
+    if city not in cities:
+        return "City not found"
 
     lat, lon = cities[city]
 
@@ -145,24 +125,75 @@ def live(city):
         pollution=pollution
     )
 
-# PERFORMANCE ANALYSIS PAGE
-@app.route('/performance')
-def performance():
-    return render_template('performance.html')
+# ==========================
+# CITY AQI SEARCH
+# ==========================
 
-@app.route('/dataset')
-def dataset():
-    return render_template('dataset.html')
+@app.route('/aqi', methods=['POST'])
+def aqi():
+    api_key = "9529e6bfcb617d03055e4d73a9ce3132"
+    city = request.form['city']
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
+    geo_url = f"http://api.openweathermap.org/geo/1.0/direct?q={city}&limit=1&appid={api_key}"
 
-# PREDICTION
+    geo_response = requests.get(geo_url)
+
+    geo_data = geo_response.json()
+
+    if len(geo_data) == 0:
+
+        return render_template(
+            "index.html",
+            prediction_text="City not found!"
+        )
+
+    lat = geo_data[0]['lat']
+    lon = geo_data[0]['lon']
+
+    aqi_url = f"http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid={api_key}"
+
+    aqi_response = requests.get(aqi_url)
+
+    aqi_data = aqi_response.json()
+
+    aqi_index = aqi_data['list'][0]['main']['aqi']
+
+    pm25 = aqi_data['list'][0]['components']['pm2_5']
+    pm10 = aqi_data['list'][0]['components']['pm10']
+
+    if aqi_index == 1:
+        category = "Good 😊"
+
+    elif aqi_index == 2:
+        category = "Fair 🙂"
+
+    elif aqi_index == 3:
+        category = "Moderate 😐"
+
+    elif aqi_index == 4:
+        category = "Poor 😷"
+
+    else:
+        category = "Very Poor ☠"
+
+    return render_template(
+        'index.html',
+        city=city,
+        aqi=aqi_index,
+        pm25=pm25,
+        pm10=pm10,
+        category=category
+    )
+
+# ==========================
+# PREDICTION ROUTE
+# ==========================
+
 @app.route('/predict', methods=['POST'])
 def predict():
 
     try:
+
         PM25 = float(request.form['PM25'])
         PM10 = float(request.form['PM10'])
         NO = float(request.form['NO'])
@@ -174,14 +205,14 @@ def predict():
         O3 = float(request.form['O3'])
 
     except ValueError:
+
         return render_template(
             'index.html',
-            prediction_text="Invalid Input! Please enter numbers only."
+            prediction_text="Invalid Input! Enter numbers only."
         )
 
-    import pandas as pd
-
     features = pd.DataFrame([{
+
         "PM2.5": PM25,
         "PM10": PM10,
         "NO": NO,
@@ -191,57 +222,68 @@ def predict():
         "CO": CO,
         "SO2": SO2,
         "O3": O3
+
     }])
 
     prediction = model.predict(features)[0]
 
     aqi_labels = {
-    0: "Good 😊",
-    1: "Moderate 😐",
-    2: "Poor 😷",
-    3: "Very Poor 🤢",
-    4: "Severe ☠️"
+
+        0: "Good 😊",
+        1: "Moderate 😐",
+        2: "Poor 😷",
+        3: "Very Poor 🤢",
+        4: "Severe ☠️"
+
     }
 
-    prediction = aqi_labels.get(prediction, str(prediction))
-
-    confidence = round(
-    max(model.predict_proba(features)[0]) * 100,
-    2
+    prediction = aqi_labels.get(
+        prediction,
+        str(prediction)
     )
 
-    # AQI CATEGORY + COLOR + HEALTH ADVICE
+    confidence = round(
+        max(model.predict_proba(features)[0]) * 100,
+        2
+    )
 
     category = prediction
 
     if "Good" in category:
-        color = "#00e400"
+
+        color = "#00c853"
         advice = "Air quality is good. Safe for outdoor activities."
 
     elif "Moderate" in category:
-        color = "#ffcc00"
-        advice = "Air quality is acceptable. Sensitive people should be careful."
+
+        color = "#ffd600"
+        advice = "Air quality is acceptable."
 
     elif "Poor" in category:
-        color = "#ff7e00"
-        advice = "Avoid outdoor exercise. Wear mask if needed."
+
+        color = "#ff9100"
+        advice = "Avoid outdoor exercise."
 
     elif "Very Poor" in category:
-        color = "#ff4500"
+
+        color = "#ff3d00"
         advice = "Limit outdoor activities."
 
     else:
-        color = "#ff0000"
-        advice = "Stay indoors. Avoid going outside."
 
+        color = "#b71c1c"
+        advice = "Stay indoors and wear protection."
+
+    # ==========================
     # SAVE TO DATABASE
+    # ==========================
 
     conn = sqlite3.connect("predictions.db")
 
     cursor = conn.cursor()
 
     cursor.execute("""
-    INSERT INTO predictions (
+    INSERT INTO predictions(
         PM25,
         PM10,
         NO,
@@ -271,17 +313,23 @@ def predict():
     ))
 
     conn.commit()
+    conn.close()
 
     return render_template(
-    'index.html',
 
-    prediction_text=prediction,
-    category=category,
-    color=color,
-    advice=advice,
-    confidence=confidence
+        'index.html',
+
+        prediction_text=prediction,
+        category=category,
+        color=color,
+        advice=advice,
+        confidence=confidence
+
     )
 
+# ==========================
+# RUN APP
+# ==========================
 
 if __name__ == "__main__":
     app.run(debug=True)

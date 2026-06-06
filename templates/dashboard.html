@@ -4,9 +4,57 @@
 
 {% block content %}
 
-<h1 class="mb-4">
-    📊 AQI Analytics Dashboard
+<h1 class="dashboard-title">
+📊 AQI Analytics Dashboard
 </h1>
+<div class="stats-container">
+
+    <div class="stat-card">
+        <h2>83.67%</h2>
+        <p>Model Accuracy</p>
+    </div>
+
+    <div class="stat-card">
+        <h2>Random Forest</h2>
+        <p>Best Model</p>
+    </div>
+
+    <div class="stat-card">
+        <h2>29531</h2>
+        <p>Records</p>
+    </div>
+
+    <div class="stat-card">
+        <h2>74.67%</h2>
+        <p>CV Score</p>
+    </div>
+
+</div>
+
+<h2>Model Performance Summary</h2>
+
+<table class="performance-table">
+    <tr>
+        <th>Model</th>
+        <th>Accuracy</th>
+    </tr>
+
+    <tr>
+        <td>Decision Tree</td>
+        <td>76.12%</td>
+    </tr>
+
+    <tr>
+        <td>KNN</td>
+        <td>79.84%</td>
+    </tr>
+
+    <tr>
+        <td>Random Forest</td>
+        <td>83.67%</td>
+    </tr>
+</table>
+
 
 <div class="row">
 
@@ -33,12 +81,24 @@
             src="{{ url_for('static', filename='graphs/confusion_matrix.png') }}">
 
         </div>
-
+    
     </div>
 
-</div>
+    <div class="col-md-6 mb-4">
+            <div class="custom-card">
+                <h3>Decision Tree Confusion Matrix</h3>
+                <img class="graph-img"
+                src="{{ url_for('static', filename='graphs/dt_confusion_matrix.png') }}">
+            </div>
+    </div>
 
-<div class="row">
+    <div class="col-md-6 mb-4">
+            <div class="custom-card">
+                <h3>KNN Confusion Matrix</h3>
+                <img class="graph-img"
+                src="{{ url_for('static', filename='graphs/knn_confusion_matrix.png') }}">
+            </div>
+    </div>
 
     <div class="col-md-6 mb-4">
 
@@ -52,6 +112,23 @@
         </div>
 
     </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="graph-card">
+            <h2>AQI Category Counts</h2>
+
+            <img
+                src="{{ url_for('static', filename='graphs/aqi_count.png') }}"
+                class="graph-img"
+            >
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+
+
 
     <div class="col-md-6 mb-4">
 
