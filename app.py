@@ -17,7 +17,7 @@ model = joblib.load("best_model.pkl")
 # API KEY
 # ==========================
 
-API_KEY = os.getenv("9529e6bfcb617d03055e4d73a9ce3132")
+API_KEY = os.getenv("API_KEY")
 
 # ==========================
 # HOME PAGE
